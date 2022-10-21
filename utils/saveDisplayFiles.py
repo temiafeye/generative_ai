@@ -5,7 +5,7 @@ import imageio
 import subprocess
 import PIL
 
-from runs import nn
+from runs.nn import generator
 
 
 save_name = 0.0000000
@@ -16,7 +16,7 @@ def save_imgs(epoch):
 
     r, c = 4,4 
     noise = np.random.normal(0, 1, (r * c, LATENT_DIM))
-    gen_imgs = nn.generator.predict(noise)
+    gen_imgs = generator.predict(noise)
 
     global save_name
 

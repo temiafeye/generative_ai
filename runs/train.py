@@ -2,8 +2,8 @@ import os
 import numpy as np
 
 from PIL import Image
-from runs import nn
-from utils import saveDisplayFiles
+from runs.nn import generator, discriminator, GAN
+from utils.saveDisplayFiles import save_imgs
 
 
 #Constants
@@ -48,26 +48,26 @@ def train(path, epochs, batch_size=32, save_interval=200):
 
       #Generate Fake Images
       noise = np.random.normal(0, 1, (batch_size, LATENT_DIM))
-      gen_imgs = nn.generator.predict(noise)
+      gen_imgs = generator.predict(noise)
 
       #Train discriminator
-      d_loss_real = nn.discriminator.train_on_batch(imgs, valid)
-      d_loss_fake = nn.discriminator.train_on_batch(gen_imgs, fakes)
+      d_loss_real = discriminator.train_on_batch(imgs, valid)
+      d_loss_fake = discriminator.train_on_batch(gen_imgs, fakes)
       d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
 
       noise = np.random.normal(0, 1, (batch_size, LATENT_DIM))
       
       #inverse y label
-      g_loss = nn.GAN.train_on_batch(noise, valid)
+      g_loss = GAN.train_on_batch(noise, valid)
 
       print("******* %d %d [D loss: %f, acc: %.2f%%] [G loss: %f]" % (epoch,j, d_loss[0], 100* d_loss[1], g_loss))
 
       # if(epoch % save_interval) == 0:
-    saveDisplayFiles.save_imgs(epoch)
+      save_imgs(epoch)
 
 
 
 def save_model_weights(save_model_path):
-    nn.generator.save_weights(save_model_path + "generator.h5")
-    nn.discriminator.save_weights(save_model_path + "discriminator.h5")
-    nn.GAN.save_weights(save_model_path + "GAN.h5")
+    generator.save_weights(save_model_path + "generator.h5")
+    discriminator.save_weights(save_model_path + "discriminator.h5")
+    GAN.save_weights(save_model_path + "GAN.h5")
