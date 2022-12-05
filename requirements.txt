@@ -211,3 +211,7 @@ wget==3.2
 wrapt @ file:///Users/runner/miniforge3/conda-bld/wrapt_1651495308486/work
 xxhash==3.0.0
 zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1659400682470/work
+gradio
+torchvision
+matplotlib
+torch
