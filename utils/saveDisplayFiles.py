@@ -56,4 +56,4 @@ def create_gif():
         writer.append_data(image)
 
  
-    subprocess.call('convert -layers Optimize dcgan.gif dcgan.gif', shell=True)
+    subprocess.call('convert -layers Optimize artgan.gif artgan.gif', shell=True)
