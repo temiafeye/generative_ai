@@ -48,7 +48,7 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2022 [Temi Afeye](https://github.com/temi afeye ).<br/>
+Copyright © 2022 [Temi Afeye](https://github.com/temiafeye ).<br/>
 This project is [MIT](https://github.com/temiafeye/generative_ai/blob/main/LICENSE) licensed.
 
 ---
